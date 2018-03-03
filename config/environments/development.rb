@@ -52,4 +52,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.action_cable.allowed_request_origins = [
+    'https://rails-tutorial-mhartl.c9users.io' ]
 end
