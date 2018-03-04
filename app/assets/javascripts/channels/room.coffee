@@ -6,10 +6,8 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    unless data.content.blank?
-      $('#messages-table').append '<div class="message">' +
-        '<div class="message-user">' + data.email + ":" + '</div>' +
-        '<div class="message-content">' + data.content + '</div>' + '</div>'
+     if (data.message && !data.message.blank?)
+      $('#messages-table').append data.message
       scroll_bottom()
 
 $(document).on 'turbolinks:load', ->
@@ -18,7 +16,7 @@ $(document).on 'turbolinks:load', ->
 
 submit_message = () ->
   $('#message_content').on 'keydown', (event) ->
-    if event.keyCode is 13
+    if event.keyCode is 13 && !event.shiftKey
       $('input').click()
       event.target.value = ""
       event.preventDefault()

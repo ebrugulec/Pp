@@ -9,9 +9,10 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col col-lg-1">
           <div id="sidebar-wrapper">
               <ul class="sidebar-nav">
                   <li class="sidebar-brand">
@@ -38,17 +39,34 @@
                       <a href="#">Services</a>
                   </li>
                   <li>
-                      <a href="#">Contact</a>
+                      <%= link_to "Çıkış", destroy_user_session_path, method: :delete %>
                   </li>
               </ul>
           </div>
         </div>
-        <div class="col">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-          <%= yield %>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <div class="fluid-container">
+          <div class="row">
+            <div class="col-sm-6">
+              <% if user_signed_in? %>
+                <h5> Chat Rooms </h5>
+                <ul>
+                <% current_user.chatrooms.each do |chatroom| %>
+                  <li><%= link_to chatroom.name, '#' %> </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+            <div class="col-sm-6">
+              <%= yield %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <% else %>
+        <%= yield %>
+    <% end %>
   </body>
 </html>
