@@ -46,19 +46,19 @@
         </div>
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
-        <div class="fluid-container">
+        <div class="fluid-container col col-lg-8">
           <div class="row">
             <div class="col-sm-6">
               <% if user_signed_in? %>
                 <h5> Chat Rooms </h5>
                 <ul>
                 <% current_user.chatrooms.each do |chatroom| %>
-                  <li><%= link_to chatroom.name, '#' %> </li>
+                  <li><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %> </li>
                   <% end %>
                 </ul>
               <% end %>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 col-sm-offset-2">
               <%= yield %>
             </div>
           </div>
