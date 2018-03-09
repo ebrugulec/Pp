@@ -1,14 +1,23 @@
-<p>
-  <strong>Mesaj atılan Name:</strong>
+<%= csrf_meta_tag %>
+<div data-behavior='receiver' data-receiver-user-id='<%= @user.id %>'>
   <%= @user.username %>
-</p>
+  <%= @user.id %>
+</div>
+
 <p>
   <strong> Mesaj atan Name:</strong>
-  <%= current_user.username %>
-</p>
-  <%= render 'messages/messages' %>
+  chat id:
 
-<%= form_for :message, url: direct_message_path(@user) do |f| %>
-  <%= f.text_area :content, rows: 1, class:"form-control", autofocus: true %>
-  <%= f.submit %>
+  <%= current_user.chatrooms.last.id %>
+
+  <%= current_user.id %>
+</p>
+<div data-behavior='receiver' data-chatroom-id='<%= @messages.last.chatroom_id %>'>
+  <% @messages.each do |message| %>
+      <%= render message %>
+  <% end %>
+</div>
+
+<%= form_for :message, remote: true, url: direct_message_path(@user), authenticity_token: true, html: { id: 'new_direct_message'} do |f| %>
+  <%= f.text_area :content, rows: 1, class:"input-box", autofocus: true %>
 <% end %>

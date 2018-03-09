@@ -17,5 +17,5 @@ Rails.application.routes.draw do
     root to: 'chatrooms#index', as: :authenticated_root
   end
   root 'home#index'
-  # mount ActionCable.server, at: '/cable'
+  mount ActionCable.server, at: '/cable'
 end

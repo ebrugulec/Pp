@@ -10,9 +10,9 @@
 
   <body>
     <% if user_signed_in? %>
-    <div class="container">
+    <div class="fluid-container">
       <div class="row">
-        <div class="col col-lg-1">
+        <div class="col-sm">
           <div id="sidebar-wrapper">
               <ul class="sidebar-nav">
                   <li class="sidebar-brand">
@@ -43,12 +43,11 @@
         </div>
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
-        <div class="fluid-container col col-lg-8">
-          <div class="row">
+
+        <div class="col-10" id="main-container">
             <div class="col-sm-6 col-sm-offset-2">
               <%= yield %>
             </div>
-          </div>
         </div>
       </div>
     </div>
