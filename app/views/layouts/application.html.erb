@@ -17,47 +17,34 @@
               <ul class="sidebar-nav">
                   <li class="sidebar-brand">
                       <a href="#">
-                          Start Bootstrap
+                          Paper Project <%= current_user.username %>
                       </a>
                   </li>
                   <li>
-                      <a href="#">Dashboard</a>
+                    Channels <%= link_to fa_icon "plus" %>
                   </li>
-                  <li>
-                      <a href="#">Shortcuts</a>
-                  </li>
-                  <li>
-                      <a href="#">Overview</a>
-                  </li>
-                  <li>
-                      <a href="#">Events</a>
-                  </li>
-                  <li>
-                      <a href="#">About</a>
-                  </li>
-                  <li>
-                      <a href="#">Services</a>
-                  </li>
+                  <% current_user.chatrooms.each do |chatroom| %>
+                    <li><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %> </li>
+                    <% end %>
                   <li>
                       <%= link_to "Çıkış", destroy_user_session_path, method: :delete %>
                   </li>
+                  <li>
+                    Direct Messages
+                  </li>
+                  <% User.all.each do |user| %>
+                    <li>
+                      <%= link_to user.username, create_direct_path(user) %>
+                    </li>
+                  <% end %>
               </ul>
+
           </div>
         </div>
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
         <div class="fluid-container col col-lg-8">
           <div class="row">
-            <div class="col-sm-6">
-              <% if user_signed_in? %>
-                <h5> Chat Rooms </h5>
-                <ul>
-                <% current_user.chatrooms.each do |chatroom| %>
-                  <li><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %> </li>
-                  <% end %>
-                </ul>
-              <% end %>
-            </div>
             <div class="col-sm-6 col-sm-offset-2">
               <%= yield %>
             </div>

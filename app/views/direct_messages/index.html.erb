@@ -1,0 +1,14 @@
+<p>
+  <strong>Mesaj atılan Name:</strong>
+  <%= @user.username %>
+</p>
+<p>
+  <strong> Mesaj atan Name:</strong>
+  <%= current_user.username %>
+</p>
+  <%= render 'messages/messages' %>
+
+<%= form_for :message, url: direct_message_path(@user) do |f| %>
+  <%= f.text_area :content, rows: 1, class:"form-control", autofocus: true %>
+  <%= f.submit %>
+<% end %>
