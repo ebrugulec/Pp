@@ -1,0 +1,31 @@
+<%= @conversation.subject %>
+
+<h4>Participants</h4>
+<% @conversation.participants.each do |participant| %>
+  <div><%= participant.username %></div>
+  <% end %>
+
+  <hr/>
+<% @conversation.receipts_for(current_user).each do |receipt| %>
+  <div>
+    <div><%= receipt.message.sender.username %> commented: </div>
+    <%= simple_format receipt.message.body %>
+
+    <% if receipt.message.attachment? %>
+    <strong>
+      Attachment
+    </strong>
+    <%= link_to receipt.message.attachment.file.filename, receipt.message.attachment.url, target: :blank %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_for @message, url: conversation_messages_path(@conversation) do |f| %>
+  <div>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+    <%= f.file_field :attachment %>
+  </div>
+  <%= submit_tag %>
+  <% end %>

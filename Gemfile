@@ -17,6 +17,8 @@ gem 'devise'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
 gem "font-awesome-rails"
+gem 'mailboxer', github: 'mailboxer/mailboxer'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

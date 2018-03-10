@@ -3,23 +3,32 @@ class DirectMessagesController < ApplicationController
   before_action :generate_chatroom_id, only: :create
 
   def create
-    @messagev = current_user.messages.build(message_params)
 
-
-      @chatroom = Chatroom.create
-      @chatroom.chatroom_users.where(user_id: @user.id).first_or_create
-      @chatroom.chatroom_users.create(user_id: current_user.id)
-      p 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-      p @user.chatrooms.last
-      @messagev.chatroom_id = @chatroom.id
-
-    if @messagev.save
-      MessageRelayJob.perform_now(@messagev)
-    end
+    @chatroom = Chatroom.find(params[:id])
+    message = @chatroom.messages.new(message_params)
+    message.user = current_user
+    message.save
+    @messages = @chatroom.messages
+    render 'direct_messages/index', collection: @chatroom
+    # if @messagev.save
+    #   MessageRelayJob.perform_now(@messagev)
+    # end
   end
 
   def index
-    @messages = message.order('created_at asc')
+    if @chatroom
+      @chatroom = Chatroom.find(params[:chatroom_id])
+      @messages = @chatroom.messages
+    end
+  end
+
+  def create_chatroom
+    @chatroom = Chatroom.create
+    @chatroom_user1 = @chatroom.chatroom_users.where(user_id: current_user.id).first_or_create
+    @chatroom_user2 = @chatroom.chatroom_users.where(user_id: @user.id).first_or_create
+    render 'direct_messages/index', collection: @chatroom
+
+    
   end
 
   private

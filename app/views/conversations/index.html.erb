@@ -1,0 +1,13 @@
+<h1>Conversations </h1>
+<hr/>
+<% @conversations.each do |conversation| %>
+    <div>
+      <% if conversation.is_unread?(current_user) %>
+        <strong>
+          <%= link_to conversation.subject, conversation_path(conversation) %>
+        </strong>
+      <% else %>
+        <%= link_to conversation.subject, conversation_path(conversation) %>
+    </div>
+    <% end %>
+  <% end %>
