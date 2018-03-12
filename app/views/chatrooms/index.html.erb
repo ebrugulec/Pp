@@ -26,5 +26,29 @@
 </table>
 
 <br>
+<%= link_to "Invite Me", new_user_invitation_path %>
+<br>
+
+<h5>Davet Gönderilen Kullanıcılar<h5>
+<% User.all.each do |user| %>
+<%= user.invitation_accepted? %>
+  <div>
+    <%= link_to user.email, edit_user_registration_path(user) %>
+  </div>
+<% end %>
+
+<!-- <h5>Davet Kabul Eden Kullanıcılar<h5>
+<% User.invitation_accepted.each do |user| %>
+  <div>
+    <%= link_to user.email, edit_user_registration_path(user) %>
+  </div>
+<% end %>
+
+<h5>Davet Kabul Etmeyen Kullanıcılar<h5>
+<% User.invitation_not_accepted.each do |user| %>
+  <div>
+    <%= link_to user.email, edit_user_registration_path(user) %>
+  </div>
+<% end %> -->
 
 <%= link_to 'New Chatroom', new_chatroom_path %>

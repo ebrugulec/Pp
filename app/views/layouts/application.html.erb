@@ -26,9 +26,7 @@
                   <% current_user.chatrooms.each do |chatroom| %>
                     <li><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %> </li>
                     <% end %>
-                  <li>
-                      <%= link_to "Çıkış", destroy_user_session_path, method: :delete %>
-                  </li>
+
                   <li>
                     Direct Messages
                   </li>
@@ -50,7 +48,12 @@
                   <li>
                     <%= link_to "Total Conversation (#{current_user.mailbox.conversations.count})" %>
                   </li>
-
+                  <li>
+                      <%= link_to "Çıkış", destroy_user_session_path, method: :delete %>
+                  </li>
+                  <li>
+                      <%= link_to "Edit", edit_user_registration_path %>
+                  </li>
               </ul>
 
           </div>
@@ -59,14 +62,12 @@
         <p class="alert"><%= alert %></p>
 
         <div class="col-10" id="main-container">
-            <div class="col-sm-6 col-sm-offset-2">
-              <%= yield %>
-            </div>
+          <%= yield %>
         </div>
       </div>
     </div>
     <% else %>
-        <%= yield %>
+      <%= yield %>
     <% end %>
   </body>
 

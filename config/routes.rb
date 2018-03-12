@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   get 'direct_message/index/:id', to: 'direct_messages#index', as: 'create_direct'
   post 'direct_message/create_chatroom/:id', to: 'direct_messages#create_chatroom', as: 'create_chatroom'
 
-  devise_for :users
+  devise_for :users, :controllers => { :invitations => 'devise/invitations' }
   authenticated :user do
+    get '/users', to: "users#index", as: "all_users"
     resources :chatrooms do
       resource :chatroom_users
       resources :messages
-      resources :user
+      resources :users
     end
   end
 
