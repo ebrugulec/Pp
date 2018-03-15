@@ -1,19 +1,20 @@
-<p>
-  <strong>Name:</strong>
-  <%= @chatroom.name %>
-</p>
+<nav class="navbar navbar-light bg-light">
+  <%= link_to "#{@chatroom.name}" %>
+</nav>
 
-<% unread_messages = false %>
-<div data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>'>
-  <% @messages.each do |message| %>
-    <% if !unread_messages && @chatroom_user.last_read_at < message.created_at %>
-      <% unread_messages = true %>
-      <div class='strike'><span>Unread Messages</span></div>
+<div class="col-md-6">
+  <% unread_messages = false %>
+  <div data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>'>
+    <% @messages.each do |message| %>
+      <% if !unread_messages && @chatroom_user.last_read_at <= message.created_at %>
+        <% unread_messages = true %>
+        <div class='strike'><span>Unread Messages</span></div>
+      <% end %>
+        <%= render message %>
     <% end %>
-      <%= render message %>
-  <% end %>
-</div>
+  </div>
 
-<%= form_for [@chatroom, Message.new] do |f| %>
-  <%= f.text_area :content, rows: 1, class:"form-control", autofocus: true %>
-<% end %>
+  <%= form_for [@chatroom, Message.new] do |f| %>
+    <%= f.text_area :content, rows: 1, class:"form-control", autofocus: true %>
+  <% end %>
+<div>

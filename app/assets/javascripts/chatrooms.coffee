@@ -13,6 +13,7 @@ $(document).on "turbolinks:load", ->
       $(this).submit()
 
   $('#new_message').on "submit", (e) ->
+    console.log($("[data-behavior='messages']").data("chatroom-id"))
     e.preventDefault()
     chatroom_id = $("[data-behavior='messages']").data("chatroom-id")
     content     = $("#message_content")

@@ -20,12 +20,14 @@ gem 'jquery-rails'
 gem "font-awesome-rails"
 gem 'mailboxer', github: 'mailboxer/mailboxer'
 gem 'mini_magick'
+gem 'activeadmin'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'letter_opener'
+  gem "awesome_print", require:"ap"
 end
 
 group :development do

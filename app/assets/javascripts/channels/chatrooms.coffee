@@ -7,7 +7,6 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
     active_chatroom = $("[data-behavior='messages'][data-chatroom-id='#{data.chatroom_id}']")
     if active_chatroom["length"] > 0
       if document.hidden
-        console.log(document.hidden)
         if $(".strike").length == 0
           active_chatroom.append("<div class='strike'><span>Unread Messages</span></div>")
 

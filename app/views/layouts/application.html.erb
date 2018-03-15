@@ -12,23 +12,23 @@
     <% if user_signed_in? %>
     <div class="fluid-container">
       <div class="row">
-        <div class="col-sm">
-          <div id="sidebar-wrapper">
+          <div class="col-md-3" id="sidebar-wrapper">
               <ul class="sidebar-nav">
                   <li class="sidebar-brand">
-                      <a href="#">
-                          Paper Project <%= current_user.username %>
-                      </a>
+                      <%= link_to root_path do %>
+                      <span id='title'>Paper Project</span>
+                      <% end %>
                   </li>
+                  <hr/>
                   <li>
-                    Channels <%= link_to fa_icon "plus" %>
+                    <span class="span">Channels</span>
                   </li>
                   <% current_user.chatrooms.each do |chatroom| %>
                     <li><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %> </li>
                     <% end %>
-
+                    <hr/>
                   <li>
-                    Direct Messages
+                    <span class="span">Direct Messages</span>
                   </li>
                   <li>
                     <%= link_to "New Conversation", new_conversation_path %>
@@ -57,11 +57,8 @@
               </ul>
 
           </div>
-        </div>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
 
-        <div class="col-10" id="main-container">
+        <div class="col-md-9" id="main-container">
           <%= yield %>
         </div>
       </div>
@@ -70,5 +67,4 @@
       <%= yield %>
     <% end %>
   </body>
-
 </html>
