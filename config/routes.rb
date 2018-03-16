@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  post 'direct_message/create/:id', to: 'direct_messages#create', as: 'direct_message'
-
-  get 'direct_message/index/:id', to: 'direct_messages#index', as: 'create_direct'
-  post 'direct_message/create_chatroom/:id', to: 'direct_messages#create_chatroom', as: 'create_chatroom'
 
   resources :admin
 
@@ -16,6 +12,8 @@ Rails.application.routes.draw do
       resources :messages
       resources :users, only: [:show]
     end
+
+    resources :direct_messages
 
     resources :conversations do
       resources :messages

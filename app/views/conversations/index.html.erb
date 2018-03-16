@@ -1,13 +1,13 @@
-<h1>Conversations </h1>
-<hr/>
+<% @title = 'Conversations' %>
+<%= render 'layouts/navbar' %>
 <% @conversations.each do |conversation| %>
-    <div>
-      <% if conversation.is_unread?(current_user) %>
-        <strong>
-          <%= link_to conversation.subject, conversation_path(conversation) %>
-        </strong>
-      <% else %>
+  <div>
+    <% if conversation.is_unread?(current_user) %>
+      <strong>
         <%= link_to conversation.subject, conversation_path(conversation) %>
-    </div>
-    <% end %>
+      </strong>
+    <% else %>
+      <%= link_to conversation.subject, conversation_path(conversation) %>
+  </div>
   <% end %>
+<% end %>

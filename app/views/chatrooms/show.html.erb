@@ -1,6 +1,5 @@
-<nav class="navbar navbar-light bg-light">
-  <%= link_to "#{@chatroom.name}" %>
-</nav>
+<% @title = @chatroom.name %>
+<%= render 'layouts/navbar' %>
 
 <div class="col-md-6">
   <% unread_messages = false %>

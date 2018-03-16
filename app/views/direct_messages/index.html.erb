@@ -1,6 +1,5 @@
 <%= csrf_meta_tag %>
 
-
 <% unless @chatroom %>
   <%= button_to 'Start Chat', create_chatroom_path(@user) %>
 <% end %>
