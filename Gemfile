@@ -27,6 +27,7 @@ gem 'gemoji'
 gem 'commonmarker'
 gem 'sanitize', '~> 4.6', '>= 4.6.1'
 gem 'trix'
+gem 'shrine'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

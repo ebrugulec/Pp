@@ -12,6 +12,6 @@
   <% end %>
 </div>
 <%= form_for [@chatroom, Message.new] do |f| %>
-  <%= f.hidden_field :content, class:"form-control", autofocus: true %>
+  <%= f.hidden_field :content, class:"form-control", autofocus: true, id: :post_content %>
   <trix-editor input="post_content", autofocus="true"></trix-editor>
 <% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :invitations => 'devise/invitations' }
   authenticated :user do
     root to: 'chatrooms#index', as: :authenticated_root
+    resources :photos
     resources :users, only: [:show]
     resources :chatrooms do
       resource :chatroom_users
