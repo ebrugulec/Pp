@@ -1,4 +1,4 @@
-<div class="message-input form-group">
+<div class="message-input form-group" class="emoji-picker-container">
   <%= form_for(@message, remote: true), html: { class: 'input' } do |f| %>
     <%= f.text_area :content%>
     <%= f.submit "Send" %>

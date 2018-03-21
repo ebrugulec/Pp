@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :messages
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
+  has_many :survey_users
+  has_many :surveys, through: :survey_users
 
   validates :username, presence: true
 

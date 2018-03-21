@@ -5,14 +5,18 @@
 
 .message-user
   {
-    height: 30px;
-    margin-right: 1%;
+    height: 50px;
+    margin-right: 5%;
     float: left;
     font-weight: bold;
     color: #008CBA;
+    text-align: left;
+    vertical-align: middle;
   }
 
 .message-content
   {
-    height: 30px;
+    height: 50px;
+    text-align: left;
+    vertical-align: middle;
   }

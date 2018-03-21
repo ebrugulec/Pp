@@ -6,7 +6,7 @@ class ChatroomsController < ApplicationController
   end
 
   def show
-    @messages = @chatroom.messages.order(created_at: :desc).limit(7).reverse
+    @messages = @chatroom.messages.order(created_at: :desc).limit(1000).reverse
     @chatroom_user = current_user.chatroom_users.find_by(chatroom_id: @chatroom.id)
   end
 

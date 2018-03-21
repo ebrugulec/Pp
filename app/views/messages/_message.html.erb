@@ -3,6 +3,6 @@
     <%= message.user.username %>:
   </div>
   <div class="message-content">
-    <%= message.content %>
+    <%= markdownify(message.content) %>
   </div>
 </div>

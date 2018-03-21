@@ -1,0 +1,7 @@
+<h1>Editing Survey</h1>
+
+<%= link_to 'Soru Ekle', survey_build_question_path(@survey) %><br/>
+<%= render 'form', survey: @survey %>
+
+<%= link_to 'Show', @survey %> |
+<%= link_to 'Back', surveys_path %>

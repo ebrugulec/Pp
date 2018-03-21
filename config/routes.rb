@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :invitations => 'devise/invitations' }
   authenticated :user do
+    root to: 'chatrooms#index', as: :authenticated_root
     resources :users, only: [:show]
     resources :chatrooms do
       resource :chatroom_users
@@ -14,6 +15,10 @@ Rails.application.routes.draw do
     end
 
     resources :direct_messages
+
+    resources :surveys do
+      get 'build_question', to: "surveys#build_question", as: :build_question
+    end
 
     resources :conversations do
       resources :messages
@@ -27,7 +32,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'chatrooms#index', as: :authenticated_root
   root 'home#index'
   # mount ActionCable.server, at: '/cable'
 end

@@ -8,16 +8,16 @@ handleVisibilityChange = ->
 $(document).on "turbolinks:load", ->
   $(document).on "click", handleVisibilityChange
   $("#new_message").on "keypress", (e) ->
-    if e && e.keyCode == 13
+    if e && e.keyCode == 13 && !event.shiftKey
       e.preventDefault()
       $(this).submit()
 
   $('#new_message').on "submit", (e) ->
-    console.log($("[data-behavior='messages']").data("chatroom-id"))
+    edi = document.querySelector("trix-editor")
     e.preventDefault()
     chatroom_id = $("[data-behavior='messages']").data("chatroom-id")
     content     = $("#message_content")
 
-    App.chatrooms.send_message(chatroom_id, content.val())
+    App.chatrooms.send_message(chatroom_id, edi.innerHTML)
 
-    content.val("")
+    edi.editor.loadHTML("")
