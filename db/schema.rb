@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321001408) do
+ActiveRecord::Schema.define(version: 20180322153606) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -175,7 +175,6 @@ ActiveRecord::Schema.define(version: 20180321001408) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username"
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -184,6 +183,8 @@ ActiveRecord::Schema.define(version: 20180321001408) do
     t.string "invited_by_type"
     t.integer "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.string "full_name"
+    t.string "departmant"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"

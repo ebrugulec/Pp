@@ -11,11 +11,11 @@ App.chatrooms = App.cable.subscriptions.create "ChatroomsChannel",
           active_chatroom.append("<div class='strike'><span>Unread Messages</span></div>")
 
         if Notification.permission == 'granted'
-          new Notification(data.username, {body: data["content"]})
+          new Notification(data.full_name, {body: data["content"]})
       else
         App.last_read.update(data["chatroom_id"])
 
-      active_chatroom.append("<div class='message-user'><strong>#{data["username"]}:</div><div class='message-content'></strong>#{data["content"]}</div>")
+      active_chatroom.append("<div class='message-user'><strong>#{data["full_name"]}:</div><div class='message-content'></strong>#{data["content"]}</div>")
     else
       $("[data-behavior='chatroom-link'][data-chatroom-id='#{data.chatroom_id}']").css("font-weight", "bold")
 

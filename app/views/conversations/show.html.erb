@@ -3,15 +3,14 @@
 <%= @conversation.subject %>
 
 <h4>Participants</h4>
-<% @conversation.participants.each do |participant| %>
-  <div><%= participant.username %></div>
-  <% end %>
+
 
   <hr/>
 <% @conversation.receipts_for(current_user).each do |receipt| %>
   <div>
-    <div><%= receipt.message.sender.username %> commented: </div>
+    <div><%= receipt.message.sender.full_name %> commented: </div>
     <%= simple_format receipt.message.body %>
+    <%= receipt.id %>
 
     <% if receipt.message.attachment? %>
     <strong>
@@ -30,4 +29,4 @@
     <%= f.file_field :attachment %>
   </div>
   <%= submit_tag %>
-  <% end %>
+<% end %>

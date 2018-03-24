@@ -29,7 +29,11 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    recepients = User.where(id: params[:user_ids])
+    if params[:all]
+      recepients = User.where('id != ?', current_user.id)
+    else
+      recepients = User.where(id: params[:user_ids])
+    end
     receipt = current_user.send_message(recepients, params[:body], params[:subject])
     redirect_to conversation_path(receipt.conversation)
   end

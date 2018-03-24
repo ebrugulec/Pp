@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
   resources :admin
 
   devise_for :users, :controllers => { :invitations => 'devise/invitations' }
   authenticated :user do
-    root to: 'chatrooms#index', as: :authenticated_root
+    root to: 'chatrooms#index'
     resources :photos
     resources :users, only: [:show]
     resources :chatrooms do
@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'home#index'
+  devise_scope :user do
+    get "/" => "devise/sessions#new"
+  end
+
   # mount ActionCable.server, at: '/cable'
 end

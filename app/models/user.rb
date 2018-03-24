@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :survey_users
   has_many :surveys, through: :survey_users
 
-  validates :username, presence: true
+  validates :full_name, presence: true
 
   def name
     "User #{id}"

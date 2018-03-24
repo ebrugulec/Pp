@@ -3,5 +3,5 @@ class Mailboxer::AttachmentUploader < CarrierWave::Uploader::Base
 
   storage :file
 
-  process resize_to_fill: [100, 100]
+  process resize_to_fill: [600, 900]
 end

@@ -1,17 +1,17 @@
 class MessagesController < ApplicationController
-  before_action :get_messages, only: :index
-  # before_action :set_conversation
+  # before_action :get_messages, only: :index
+  before_action :set_conversation
 
   def create
-    # current_user.reply_to_conversation(
-    #   @conversation,
-    #   params[:mailboxer_message][:body],
-    #   nil,
-    #   true,
-    #   true,
-    #   params[:mailboxer_message][:attachment]
-    #   )
-    # redirect_to conversation_path(@conversation)
+    current_user.reply_to_all(
+      @conversation.receipts.last,
+      params[:mailboxer_message][:body],
+      true,
+      true,
+      params[:mailboxer_message][:attachment]
+      )
+
+    redirect_to conversation_path(@conversation)
   end
 
   # def create
@@ -32,16 +32,11 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:content)
+    params.require(:message).permit(:content, :attachment)
   end
-
 
   def get_messages
     @messages = Message.for_display
     @message  = current_user.messages.build
-  end
-
-  def render_message(message)
-    render(partial: 'message', locals: { message: message })
   end
 end

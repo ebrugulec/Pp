@@ -2,13 +2,13 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :username, :email
+permit_params :full_name, :email
 
 index do
   selectable_column
   id_column
   column :email
-  column :username
+  column :full_name
   column :current_sign_in_at
   column :sign_in_count
   column :created_at

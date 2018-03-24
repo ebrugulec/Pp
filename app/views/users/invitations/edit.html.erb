@@ -6,8 +6,11 @@
 
   <% if f.object.class.require_password_on_accepting %>
 
-  <p><%= f.label :username %><br />
-  <%= f.text_field :username %></p>
+  <p><%= f.label :full_name %><br />
+  <%= f.text_field :full_name %></p>
+
+  <p><%= f.label :departmant %><br />
+  <%= f.text_field :departmant %></p>
 
   <p><%= f.label :password %><br />
   <%= f.password_field :password %></p>

@@ -3,16 +3,17 @@
 
 <%= form_tag conversations_path, method: :post do %>
   <div>
-    <%= select_tag :user_ids, options_from_collection_for_select(@receipts, :id, :username), multiple: true %>
+    <%= select_tag :user_ids, options_from_collection_for_select(@receipts, :id, :full_name), multiple: true %>
   </div>
-
+  <div>
+    <%= check_box_tag 'all', 'yes' %>
+    all
+  </div>
   <div>
     <%= text_field_tag :subject, nil, placeholder: "Subject" %>
   </div>
-
   <div>
     <%= text_area_tag :body, nil,  placeholder: "Leave a comment" %>
   </div>
-
   <%= submit_tag %>
-  <% end %>
+<% end %>

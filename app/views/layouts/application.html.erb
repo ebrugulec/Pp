@@ -27,41 +27,42 @@
                     <li><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %> </li>
                     <% end %>
                     <hr/>
+                    <li>
+                      <span class="span">Documents</span>
+                    </li>
+                    <li>
+                      <%= link_to "New Document", new_conversation_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Inbox (#{current_user.mailbox.inbox.unread(current_user).count})", inbox_conversations_path %>
+                    </li>
+                    <li>
+                      <%= link_to "All Conversations (#{current_user.mailbox.conversations.count})", all_conversations_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Sent (#{current_user.mailbox.sentbox.count})", sent_conversations_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Trash (#{current_user.mailbox.trash.count})", trash_conversations_path %>
+                    </li>
+                    <li>
+                      <%= link_to "Total Conversation (#{current_user.mailbox.conversations.count})" %>
+                    </li>
+                    <hr/>
                   <li>
                     <span class="span">Direct Messages</span>
                   </li>
                   <% (User.all - [current_user]).each do |user| %>
-                  <li><%= link_to user.username, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, user]).id} %> </li>
+                  <li><%= link_to user.full_name, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, user]).id} %> </li>
                   <% end %>
-                  <!-- <li>
-                    <%= link_to "New Conversation", new_conversation_path %>
-                  </li>
-                  <li>
-                    <%= link_to "Inbox (#{current_user.mailbox.inbox.unread(current_user).count})", inbox_conversations_path %>
-                  </li>
-                  <li>
-                    <%= link_to "All Conversations (#{current_user.mailbox.conversations.count})", all_conversations_path %>
-                  </li>
-                  <li>
-                    <%= link_to "Sent (#{current_user.mailbox.sentbox.count})", sent_conversations_path %>
-                  </li>
-                  <li>
-                    <%= link_to "Trash (#{current_user.mailbox.trash.count})", trash_conversations_path %>
-                  </li>
-                  <li>
-                    <%= link_to "Total Conversation (#{current_user.mailbox.conversations.count})" %>
-                  </li>
-                -->
                 <li>
                   <%= link_to "Edit", edit_user_registration_path %>
                 </li>
                   <li>
-                      <%= link_to "Çıkış", destroy_user_session_path, method: :delete %>
+                    <%= link_to "Çıkış", destroy_user_session_path, method: :delete %>
                   </li>
               </ul>
-
           </div>
-
         <div class="col-md-9" id="main-container">
           <%= yield %>
         </div>
