@@ -22,14 +22,17 @@ Rails.application.routes.draw do
       get 'build_question', to: "surveys#build_question", as: :build_question
     end
 
+    # post 'create_conversation', to: 'conversations#create'
     resources :conversations do
       resources :messages
+      get 'sil', to: 'conversations#trash_sil'
 
       collection do
         get :inbox
         get :all, action: :index
         get :sent
-        get :trash
+        post :create, as: "new_con"
+        # post :trash, as: "trash"
       end
     end
   end

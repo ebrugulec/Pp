@@ -28,7 +28,7 @@
                     <% end %>
                     <hr/>
                     <li>
-                      <span class="span">Documents</span>
+                      <span class="span">Share Document</span>
                     </li>
                     <li>
                       <%= link_to "New Document", new_conversation_path %>
@@ -37,16 +37,15 @@
                       <%= link_to "Inbox (#{current_user.mailbox.inbox.unread(current_user).count})", inbox_conversations_path %>
                     </li>
                     <li>
-                      <%= link_to "All Conversations (#{current_user.mailbox.conversations.count})", all_conversations_path %>
+                      <%= link_to "All (#{current_user.mailbox.conversations.count})", all_conversations_path %>
                     </li>
                     <li>
                       <%= link_to "Sent (#{current_user.mailbox.sentbox.count})", sent_conversations_path %>
                     </li>
                     <li>
-                      <%= link_to "Trash (#{current_user.mailbox.trash.count})", trash_conversations_path %>
                     </li>
                     <li>
-                      <%= link_to "Total Conversation (#{current_user.mailbox.conversations.count})" %>
+                      <%= link_to "Trash (#{current_user.mailbox.conversations.count})" %>
                     </li>
                     <hr/>
                   <li>

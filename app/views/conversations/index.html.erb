@@ -1,13 +1,23 @@
-<% @title = 'Conversations' %>
+<% @title = 'All Documents' %>
 <%= render 'layouts/navbar' %>
-<% @conversations.each do |conversation| %>
-  <div>
-    <% if conversation.is_unread?(current_user) %>
-      <strong>
-        <%= link_to conversation.subject, conversation_path(conversation) %>
-      </strong>
-    <% else %>
-      <%= link_to conversation.subject, conversation_path(conversation) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-centered">
+      <% @conversations.each do |conversation| %>
+        <ul class="list-group">
+          <% if conversation.is_unread?(current_user) %>
+            <li class="list-group-item">
+              <strong>
+                <%= conversation.created_at.strftime("%m/%d/%Y - %I:%M") %><h4><%= link_to conversation.subject, conversation_path(conversation) %></h4>
+              </strong>
+            </li>
+          <% else %>
+            <li class="list-group-item">
+              <%= conversation.created_at.strftime("%m/%d/%Y - %I:%M") %><h4><%= link_to conversation.subject, conversation_path(conversation) %></h4>
+            </li>
+        </ul>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-  <% end %>
-<% end %>
+</div>

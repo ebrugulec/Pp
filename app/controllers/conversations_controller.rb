@@ -13,9 +13,11 @@ class ConversationsController < ApplicationController
     render action: :index
   end
 
-  def trash
-    @conversations = current_user.mailbox.trash
-    render action: :index
+  def trash_sil
+    @conversation = current_user.mailbox.conversations(id: params[:id])
+    current_user.trash(@conversation)
+      render action: :index
+    # @conversations = current_user.mailbox.trash
   end
 
   def show
@@ -29,12 +31,17 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    if params[:all]
+    if params[:message][:all] == "1"
       recepients = User.where('id != ?', current_user.id)
     else
-      recepients = User.where(id: params[:user_ids])
+      recepients = User.where(id: params[:message][:user_ids])
     end
-    receipt = current_user.send_message(recepients, params[:body], params[:subject])
+    receipt = current_user.send_message(
+                            recepients,
+                            params[:message][:body],
+                            params[:message][:subject],
+                            true,
+                            params[:message][:attachment])
     redirect_to conversation_path(receipt.conversation)
   end
 end

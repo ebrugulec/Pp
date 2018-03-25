@@ -2,6 +2,7 @@
 
 <h1>Chatrooms</h1>
 
+<%= link_to 'New Chatroom', new_chatroom_path %>
 <table>
   <thead>
     <tr>
@@ -14,7 +15,6 @@
     <% @chatrooms.each do |chatroom| %>
       <tr>
         <td><%= chatroom.name %></td>
-        <td><%= link_to 'Show', chatroom %></td>
         <td><%= link_to 'Edit', edit_chatroom_path(chatroom) %></td>
         <td><%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Join', chatroom_chatroom_users_path(chatroom), method: :post %></td>
@@ -25,7 +25,7 @@
   </tbody>
 </table>
 
-<br>
+<!-- <br>
 <%= link_to "Invite Me", new_user_invitation_path %>
 <br>
 
@@ -35,20 +35,4 @@
   <div>
     <%= link_to user.email, edit_user_registration_path(user) %>
   </div>
-<% end %>
-
-<!-- <h5>Davet Kabul Eden Kullanıcılar<h5>
-<% User.invitation_accepted.each do |user| %>
-  <div>
-    <%= link_to user.email, edit_user_registration_path(user) %>
-  </div>
-<% end %>
-
-<h5>Davet Kabul Etmeyen Kullanıcılar<h5>
-<% User.invitation_not_accepted.each do |user| %>
-  <div>
-    <%= link_to user.email, edit_user_registration_path(user) %>
-  </div>
 <% end %> -->
-
-<%= link_to 'New Chatroom', new_chatroom_path %>

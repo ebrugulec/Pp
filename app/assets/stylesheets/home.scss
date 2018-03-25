@@ -7,7 +7,20 @@
  * URL: http://blacktie.co
  */
 
+ .col-centered{
+   float: none;
+   margin-left: 17px;
+   padding-top: 50px;
+ }
 
+ .show-title {
+   color: #F11CA0;
+ }
+
+ .sign_in_bgimg {
+    background: image-url('sign-in-back.jpg');
+    max-width: 1140px;
+}
 
 /* Titles */
 h1, h2, h3, h4, h5, h6 {

@@ -1,32 +1,40 @@
-<% @title = 'Conversation Show' %>
+<% @title = 'Show Document' %>
 <%= render 'layouts/navbar' %>
-<%= @conversation.subject %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-centered">
+      <div class="show-title"><h3><%= @conversation.subject %></h3></div>
+      <% @conversation.receipts_for(current_user).each do |receipt| %>
+        <div class="form-group">
+          <div>
+            <strong>Gönderen: </strong><%= receipt.message.sender.full_name %>
+          </div>
+          <div>
+            <strong>İçerik: </strong>
+            <%= simple_format receipt.message.body %>
+          </div>
+          <div>
+            <% if receipt.message.attachment? %>
+            <strong>
+              Attachment:
+            </strong>
+            <%= link_to receipt.message.attachment.file.filename, receipt.message.attachment.url, target: :blank %>
+            <% end %>
+          </div>
+        </div>
 
-<h4>Participants</h4>
+      <hr>
+      <% end %>
 
-
-  <hr/>
-<% @conversation.receipts_for(current_user).each do |receipt| %>
-  <div>
-    <div><%= receipt.message.sender.full_name %> commented: </div>
-    <%= simple_format receipt.message.body %>
-    <%= receipt.id %>
-
-    <% if receipt.message.attachment? %>
-    <strong>
-      Attachment
-    </strong>
-    <%= link_to receipt.message.attachment.file.filename, receipt.message.attachment.url, target: :blank %>
-    <% end %>
+      <%= form_for @message, url: conversation_messages_path(@conversation) do |f| %>
+        <div class="form-group">
+          <%= f.text_area :body, placeholder: "Reply to" %>
+        </div>
+        <div class="form-group">
+          <%= f.file_field :attachment %>
+        </div>
+        <%= submit_tag "Send" %>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<%= form_for @message, url: conversation_messages_path(@conversation) do |f| %>
-  <div>
-    <%= f.text_area :body %>
-  </div>
-  <div>
-    <%= f.file_field :attachment %>
-  </div>
-  <%= submit_tag %>
-<% end %>
+</div>

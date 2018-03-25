@@ -1,19 +1,30 @@
 <% @title = 'New Conversation' %>
 <%= render 'layouts/navbar' %>
-
-<%= form_tag conversations_path, method: :post do %>
-  <div>
-    <%= select_tag :user_ids, options_from_collection_for_select(@receipts, :id, :full_name), multiple: true %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-centered">
+      <%= form_for :message, url: new_con_conversations_path do |f| %>
+        <div class="form-group">
+          <h5>Users</h5>
+          <%= f.collection_select(:user_ids, @receipts, :id, :full_name, {  }, { multiple: true, class: "form-control", style: "height:100px"})%>
+        </div>
+        <div class="form-group">
+          <%= f.check_box :all %>
+          all
+        </div>
+        <div class="form-group">
+          <%= f.file_field :attachment, class: "form-control-file" %>
+        </div>
+        <div class="form-group">
+          <%= f.text_area :subject, placeholder: "Title", class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.text_area :body, placeholder: "Body", style: "height:100px", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= submit_tag "Send", { class:"btn btn-success" } %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <%= check_box_tag 'all', 'yes' %>
-    all
-  </div>
-  <div>
-    <%= text_field_tag :subject, nil, placeholder: "Subject" %>
-  </div>
-  <div>
-    <%= text_area_tag :body, nil,  placeholder: "Leave a comment" %>
-  </div>
-  <%= submit_tag %>
-<% end %>
+</div>
