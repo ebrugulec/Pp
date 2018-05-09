@@ -1,0 +1,23 @@
+<h1>Conversations & Documents</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Users</th>
+      <th>Documents</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% User.all.each do |u| %>
+    <tr>
+      <td><%= u.full_name %></td>
+      <td>
+        <% u.mailbox.conversations.each do |c| %>
+            <%= link_to c.subject, conversation_path(c) %> -
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

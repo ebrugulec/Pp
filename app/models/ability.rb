@@ -6,7 +6,13 @@ class Ability
     #
     #   user ||= User.new # guest user (not logged in)
         can :manage, :all
-      
+
+    user ||= User.new                   # guest user (not logged in)
+    if user.admin?                        # Admin user
+      can :manage, :all
+    else                                        # Non-admin user
+      can :read, :all
+    end
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

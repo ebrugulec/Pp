@@ -18,9 +18,15 @@
  }
 
  .sign_in_bgimg {
-    background: image-url('sign-in-back.jpg');
-    max-width: 1140px;
+    background: image-url('sign-in-back.jpg') repeat;
 }
+
+.container {
+  max-width: 1400px !important;
+}
+// body {
+//    background: image-url('sign-in-back.jpg') repeat;
+// }
 
 /* Titles */
 h1, h2, h3, h4, h5, h6 {

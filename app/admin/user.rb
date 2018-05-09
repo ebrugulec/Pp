@@ -23,11 +23,4 @@ controller do
       redirect_to new_admin_user_path
     end
   end
-
-form do |f|
-    inputs 'Invite People ' do
-      input :email, label: "Email"
-    end
-    actions
-  end
 end
