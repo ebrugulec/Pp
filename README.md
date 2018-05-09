@@ -1,24 +1,40 @@
-# README
+# Pp :massage:
+---
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Pp application is communication platform like slack. With Pp you can instantly communicate in groups or individually. This project has used Ruby on Rails for the back-end, VueJs for the front-end and for the database PostgreSQL. And in this project, the rails's Action Cable structure was used to communicate instantly.
 
-Things you may want to cover:
+### Installiation
+---
+> for Linux
+- we need to database. Install PostgreSQL last version with this command:
+```shell
+  $ sudo apt-get install postgresql-9.4 postgresql-client-9.4
+```
 
-* Ruby version
+- To check that the PostgreSQL server was correctly installed and is running, you can use the command ps:
+```shell
+$ ps -ef | grep postgre
+```
 
-* System dependencies
+- Now we can install **Pp** application. You can clone this repo with command:
+```shell
+$ git clone git@github.com:ebrugulec/Pp.git
+```
 
-* Configuration
+- we need to install the gems required for this application:
+```shell
+$ cd Pp
+$ bundle
+```
 
-* Database creation
+- We must setup database:
+```shell
+$ rake db:create
+$ rake db:seed
+$ rake db:migrate
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Now, We can run application.
+```shell
+$ rails s
+```
