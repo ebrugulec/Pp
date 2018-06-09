@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
+  
   resources :admin
-
   devise_for :users, :controllers => { :invitations => 'devise/invitations' }
   authenticated :user do
     root to: 'chatrooms#index'

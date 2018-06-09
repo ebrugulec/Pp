@@ -18,4 +18,8 @@ class User < ApplicationRecord
   def mailboxer_email(object)
     nil
   end
+
+  def online?
+    updated_at > 10.minutes.ago ? true : false
+  end
 end

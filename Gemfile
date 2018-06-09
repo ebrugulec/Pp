@@ -29,6 +29,7 @@ gem 'sanitize', '~> 4.6', '>= 4.6.1'
 gem 'trix'
 gem 'shrine'
 gem 'cancancan', '~> 2.0'
+gem 'rails_admin', '~> 1.3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

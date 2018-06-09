@@ -16,17 +16,15 @@
               <ul class="sidebar-nav">
                   <li class="sidebar-brand">
                       <%= link_to root_path do %>
-                      <span id='title'>Pp</span>
+                      <span id='title'>Paper Project</span>
                       <% end %>
                   </li>
-                  <hr/>
                   <li>
                     <span class="span">Channels</span>
                   </li>
                   <% current_user.chatrooms.public_channels.each do |chatroom| %>
                     <li><%= link_to chatroom.name, chatroom, data: {behavior: "chatroom-link", chatroom_id: chatroom.id} %> </li>
                     <% end %>
-                    <hr/>
                     <li>
                       <span class="span">Share Document</span>
                     </li>
@@ -47,12 +45,19 @@
                     <li>
                       <%= link_to "Trash (#{current_user.mailbox.conversations.count})" %>
                     </li>
-                    <hr/>
                   <li>
                     <span class="span">Direct Messages</span>
                   </li>
                   <% (User.all - [current_user]).each do |user| %>
-                  <li><%= link_to user.full_name, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, user]).id} %> </li>
+                    <% if user.online? %>
+                      <li>
+                        <%= link_to "<span class='dot'></span>#{user.full_name}".html_safe, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, user]).id} %>
+                      </li>
+                    <% else %>
+                      <li>
+                        <%= link_to user.full_name, direct_message_path(user.id), data: {behavior: "chatroom-link", chatroom_id: Chatroom.direct_message_for_users([current_user, user]).id} %>
+                      </li>
+                    <% end %>
                   <% end %>
                 <li>
                   <%= link_to "Edit", edit_user_registration_path %>
