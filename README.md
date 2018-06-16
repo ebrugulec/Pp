@@ -2,7 +2,7 @@
 ---
 ![Pp GIF](https://github.com/ebrugulec/Pp/blob/master/app/assets/images/pp_gif.gif)
 
-Pp application is communication platform like slack. With Pp you can instantly communicate in groups or individually. This project has used Ruby on Rails for the back-end, VueJs for the front-end and for the database PostgreSQL. And in this project, the rails's Action Cable structure was used to communicate instantly.
+Pp application is communication platform like slack. With Pp you can instantly communicate in groups or individually. This project has used Ruby on Rails for the back-end and for the database PostgreSQL. And in this project, the rails's Action Cable structure was used to communicate instantly.
 
 ### Installiation
 ---
